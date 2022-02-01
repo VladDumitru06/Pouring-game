@@ -1,0 +1,11 @@
+Cup comes on conveyor belt under faucet and gets filled with a liquid
+Score based on how much you fill per cup (if 80% is filled you get less score than if 100% would be filed)
+push button to move belt
+push button to pour
+select color before pour
+time limit
+replace particles with solid graphic for optimization?
+get orders
+make movement of conveyor belt easy to modify
+bottles with smaller entry holes
+achivements
