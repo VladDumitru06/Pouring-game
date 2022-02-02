@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxCount: 60
-  _points: 0
+  _points: 100
 --- !u!1 &7664363963955212650
 GameObject:
   m_ObjectHideFlags: 0

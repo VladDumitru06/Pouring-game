@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxCount: 15
-  _points: 0
+  _points: 25
 --- !u!60 &9022604638946838161
 PolygonCollider2D:
   m_ObjectHideFlags: 0

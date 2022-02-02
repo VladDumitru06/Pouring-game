@@ -8,6 +8,8 @@ public static class PointManager
     public static event OnPointsAdded onPointsAdded;
     public delegate void OnPointsRemoved(int points);
     public static event OnPointsRemoved onPointsRemoved;
+    public delegate void OnPointsReceived(int points,Transform position);
+    public static event OnPointsReceived onPointsReceived;
     public static void AddPoints(int points)
     {
         onPointsAdded.Invoke(points);
@@ -16,5 +18,8 @@ public static class PointManager
     {
         onPointsRemoved.Invoke(points);
     }
-
+    public static void ShowPoints(int points, Transform position)
+    {
+        onPointsReceived.Invoke(points, position);
+    }
 }
