@@ -40,6 +40,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1330704417
+    locked: 0
+  - name: ConveyorBelt
+    uniqueID: 1963234307
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
