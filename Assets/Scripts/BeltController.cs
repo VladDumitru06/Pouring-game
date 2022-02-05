@@ -22,6 +22,7 @@ public class BeltController : MonoBehaviour
         Water2D_Spawner.instance.LifeTime = 0;
         _surfaceEffector = GetComponent<SurfaceEffector2D>();
     }
+
     // Used for input for testing, CHANGE TO NEW INPUT SYSTEM!!!
     void Update()
     {

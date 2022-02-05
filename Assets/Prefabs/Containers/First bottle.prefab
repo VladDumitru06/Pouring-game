@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 7664363963955212648}
   - component: {fileID: 7664363963955212651}
   - component: {fileID: 7664363963955212655}
+  - component: {fileID: -3411039033921256552}
   m_Layer: 0
   m_Name: First bottle
   m_TagString: Cup
@@ -270,6 +271,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3447194, y: 0.25282288}
   m_EdgeRadius: 0
+--- !u!114 &-3411039033921256552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7664363963955212650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75217f4aaded9c045b90c9bdd239feb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cupType: 0
+  capacity: 50
+  gameObject: {fileID: 0}
 --- !u!1 &7664363963998162919
 GameObject:
   m_ObjectHideFlags: 0
