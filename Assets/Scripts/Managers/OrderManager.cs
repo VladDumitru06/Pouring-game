@@ -5,14 +5,14 @@ using UnityEngine;
 public class OrderManager : MonoBehaviour
 {
     [SerializeField] List<Order> _orderList;
-    [SerializeField] float _spawnDifficulty;
+    [SerializeField] float _spawnTime;
     [SerializeField] SpawnManager _spawnManager;
     [SerializeField] Transform _sellPosition;
     [SerializeField] ScoreManager _scoreManager;
     private void Start()
     {
         AddData();
-        StartCoroutine(SpawnOrder(_spawnDifficulty));
+        StartCoroutine(SpawnOrder(_spawnTime));
     }
     void AddData()
     {
@@ -41,15 +41,19 @@ public class OrderManager : MonoBehaviour
     {
         if (_orderList.Count <= 0)
             StopAllCoroutines();
+        else
+        { 
         //_spawnManager.SpawnCup(_orderList[0].cupType);
         foreach(Order x in _orderList)
         {
             if (x.orderStatus == OrderStatus.Waiting)
             {
+                _spawnManager.SpawnCup(x.cupType);
                 Debug.Log("New Order:\nCupType: " + x.cupType + " Amount: " + x.capacity);
                 x.orderStatus = OrderStatus.Making;
                 yield return new WaitForSeconds(difficulty);
             }
+        }
         }
     }
     void FinishOrder(Order _orderToSell)

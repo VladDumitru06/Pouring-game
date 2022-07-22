@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
+    #region Variables
     /// <summary>
     /// List of container objects available, used for populating object pool
     /// </summary>
@@ -18,14 +19,19 @@ public class ObjectPool : MonoBehaviour
     /// <summary>
     /// List containing all the objects in the object pool
     /// </summary>
+    [SerializeField]
     List<Cup> _cupList;
     /// <summary>
     /// Instantiates all the objects
     /// </summary>
-    void Start()
+    #endregion
+    #region Unity Methods
+    void Awake()
     {
         PopulatePool();
     }
+    #endregion
+    #region Methods
     /// <summary>
     /// Populates the object pool with _listsize*_objects.count objects
     /// </summary>
@@ -50,6 +56,7 @@ public class ObjectPool : MonoBehaviour
     public void SpawnCup(Vector3 position, CupType _cupType)
     {
         int _tempIndex = isCupAvailable(_cupType);
+        Debug.Log("TEMPINDEX " + _tempIndex);
         if (_tempIndex != -1)
         {
             _cupList[_tempIndex].gameObject.SetActive(true);
@@ -58,7 +65,6 @@ public class ObjectPool : MonoBehaviour
         }
         else
         {
-
             GameObject _TempGO = Instantiate(GetCupByType(_cupType).gameObject);
             _TempGO.gameObject.transform.parent = transform;
             _TempGO.gameObject.SetActive(true);
@@ -85,8 +91,10 @@ public class ObjectPool : MonoBehaviour
     /// <returns>the index of the available cup or -1 if no cup is available</returns>
     private int isCupAvailable(CupType _cupType)
     {
-        for (int i = 0; i < _listSize; i++)
+        Debug.Log("isCupAvailable" + _cupList.Count);
+        for (int i = 0; i < _cupList.Count; i++)
         {
+            Debug.Log(_cupList[i].gameObject.activeSelf + " " + _cupList[i].cupType);
             if (_cupList[i].gameObject.activeSelf == false && _cupList[i].cupType == _cupType)
             {
                 return i;
@@ -99,9 +107,11 @@ public class ObjectPool : MonoBehaviour
         foreach (GameObject x in _objects)
         {
             Cup _tempCup = x.GetComponent<Cup>();
+            Debug.Log("tempCUP");
             if (_tempCup.cupType == type)
                 return _tempCup;
         }
         return null;
     }
+    #endregion
 }

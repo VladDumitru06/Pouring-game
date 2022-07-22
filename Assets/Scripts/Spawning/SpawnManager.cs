@@ -13,7 +13,6 @@ public class SpawnManager : MonoBehaviour
     {
         if(_spawnBounds.canSpawn)
         {
-
             _objectPool.SpawnCup(_cupSpawnPosition.position,_cupType);
         }
     }
