@@ -30,7 +30,10 @@ public class SellManager : MonoBehaviour
         _TempGO.SetActive(false);
         _TempGO.transform.position = Cup.transform.position;
         _TempGO.transform.parent = Cup.transform;
-        _TempGO.transform.position = new Vector3(_TempGO.transform.position.x, _TempGO.transform.position.y + _TempGO.transform.localScale.y + (Cup.transform.localScale.y), _TempGO.transform.position.z);
+        float height = Cup.GetComponent<SpriteRenderer>().size.y;
+        
+        Debug.Log(Cup.GetComponent<SpriteRenderer>().sprite.rect.height + " SIZE" + Cup.GetComponent<SpriteRenderer>().sprite.rect.height);
+        _TempGO.transform.position = new Vector3(_TempGO.transform.position.x, _TempGO.transform.position.y + height/2 + 2, _TempGO.transform.position.z);
         _TempGO.SetActive(true); 
         Debug.Log(Cup.name + "Is in the selling point");
         Cup.GetComponent<Cup>().OnCupTapped += CupTap;
