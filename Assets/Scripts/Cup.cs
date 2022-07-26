@@ -14,7 +14,7 @@ public class Cup : MonoBehaviour
 
     #endregion
     #region Events
-    public delegate void Notify();
+    public delegate void Notify(GameObject gameObject);
     public event Notify OnCupTapped;
     #endregion
     #region Unity Methods
@@ -25,7 +25,7 @@ public class Cup : MonoBehaviour
     private void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0))
-            OnCupTapped?.Invoke();
+        { Debug.Log("TAP"); OnCupTapped?.Invoke(gameObject); }
     }
 
     private void FixedUpdate()
