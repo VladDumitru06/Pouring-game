@@ -60,6 +60,7 @@ public class ObjectPool : MonoBehaviour
         if (_tempIndex != -1)
         {
             _cupList[_tempIndex].gameObject.SetActive(true);
+            _cupList[_tempIndex].cupStatus = CupStatus.Making;
             float halfHeight = _cupList[_tempIndex].gameObject.GetComponent<SpriteRenderer>().bounds.size.y / 2;
             _cupList[_tempIndex].gameObject.transform.position = new Vector3(position.x,position.y + halfHeight);
         }
@@ -68,7 +69,8 @@ public class ObjectPool : MonoBehaviour
             GameObject _TempGO = Instantiate(GetCupByType(_cupType).gameObject);
             _TempGO.gameObject.transform.parent = transform;
             _TempGO.gameObject.SetActive(true);
-            _TempGO.gameObject.transform.position = position; 
+            _TempGO.gameObject.transform.position = position;
+            _TempGO.GetComponent<Cup>().cupStatus = CupStatus.Making;
             _cupList.Add(_TempGO.GetComponent<Cup>());
             _listSize++;
         }
@@ -82,7 +84,10 @@ public class ObjectPool : MonoBehaviour
         foreach(Cup cup in _cupList)
         {
             if (cup.gameObject == cupToRemove)
-                cup.gameObject.SetActive(false);
+            {
+                cup.cupStatus = CupStatus.Despawned;
+                cup.gameObject.SetActive(false); 
+            }
         }
     }
     /// <summary>

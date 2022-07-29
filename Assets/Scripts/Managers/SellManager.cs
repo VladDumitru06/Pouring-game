@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Enums;
 public class SellManager : MonoBehaviour
 {
     #region Variables
@@ -16,6 +16,7 @@ public class SellManager : MonoBehaviour
     void Start()
     {
         _transferPosition.CupFound += DisplaySellPopUp;
+        _transferPosition.CupFound += (GameObject Cup) => { Cup.GetComponent<Cup>().cupStatus = CupStatus.WaitForTransfer; };
     }
 
     void Update()
@@ -43,18 +44,27 @@ public class SellManager : MonoBehaviour
     void CupTap(GameObject cup)
     {
         Cup _tempCup = cup.GetComponent<Cup>();
-        if (_tempCup.isMoving == false)
-            MoveCupToSellPosition(cup);
+        if (_tempCup.isMoving == false && _tempCup.cupStatus == CupStatus.WaitForTransfer)
+            MoveCupToSellPosition(_tempCup);
+        if (_tempCup.cupStatus == CupStatus.WaitForPackaging)
+            SellCup(_tempCup);
     }
-    private void MoveCupToSellPosition(GameObject Cup)
+    private void MoveCupToSellPosition(Cup Cup)
     {
-        LeanTween.moveX(Cup, _sellPosition.position.x, 5f);
-        LeanTween.moveY(Cup, Cup.transform.position.y + 1f, 2.5f).setOnComplete(() => {
-            LeanTween.moveY(Cup, Cup.transform.position.y - 1f, 2.5f).setOnComplete(()=> {
+        Cup.FreezeLiquid();
+        LeanTween.moveX(Cup.gameObject, _sellPosition.position.x, 5f);
+        LeanTween.moveY(Cup.gameObject, Cup.transform.position.y + 1f, 2.5f).setOnComplete(() => {
+            LeanTween.moveY(Cup.gameObject, Cup.transform.position.y - 1f, 2.5f).setOnComplete(()=> {
                 Cup.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 Cup.GetComponent<Rigidbody2D>().angularVelocity = 0;
+                Cup.GetComponent<Cup>().UnFreezeLiquid();
+                Cup.cupStatus = CupStatus.WaitForPackaging;
             });
         });
+    }
+    private void SellCup(Cup Cup)
+    {
+        Destroy(Cup.gameObject);
     }
     #endregion
 }

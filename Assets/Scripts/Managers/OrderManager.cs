@@ -9,10 +9,13 @@ public class OrderManager : MonoBehaviour
     [SerializeField] SpawnManager _spawnManager;
     [SerializeField] Transform _sellPosition;
     [SerializeField] ScoreManager _scoreManager;
+
+    private IEnumerator _couroutine;
     private void Start()
     {
         AddData();
-        StartCoroutine(SpawnOrder(_spawnTime));
+        _couroutine = SpawnOrder(_spawnTime);
+        StartCoroutine(_couroutine);
     }
     void AddData()
     {
@@ -40,10 +43,9 @@ public class OrderManager : MonoBehaviour
     IEnumerator SpawnOrder(float difficulty)
     {
         if (_orderList.Count <= 0)
-            StopAllCoroutines();
+            StopCoroutine(_couroutine);
         else
         { 
-        //_spawnManager.SpawnCup(_orderList[0].cupType);
         foreach(Order x in _orderList)
         {
             if (x.orderStatus == OrderStatus.Waiting)

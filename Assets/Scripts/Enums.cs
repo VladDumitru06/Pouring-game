@@ -1,5 +1,12 @@
 namespace Enums
 {
+    public enum CupStatus
+    {
+        Despawned = -1,
+        Making,
+        WaitForTransfer,
+        WaitForPackaging,
+    }
     /// <summary>
     /// Four directions of the screen
     /// </summary>

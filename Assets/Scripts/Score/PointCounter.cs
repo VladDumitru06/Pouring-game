@@ -14,6 +14,10 @@ public class PointCounter : MonoBehaviour
     /// </summary>
     [SerializeField] int _points = 0;
     /// <summary>
+    /// Water particles in the Cup, used for freezing the water when moving the cup
+    /// </summary>
+    [SerializeField] public List<GameObject> liquidParticles;
+    /// <summary>
     /// Number of particles that are filled in a glass
     /// </summary>
     int _count = 0;
@@ -21,6 +25,10 @@ public class PointCounter : MonoBehaviour
     /// Error to notify that there is no maxCount and points set
     /// </summary>
     bool test = true;
+    private void Start()
+    {
+        liquidParticles = new List<GameObject>();
+    }
     private void Update()
     {
         if (_maxCount <= 0 || _points <= 0)
@@ -42,10 +50,14 @@ public class PointCounter : MonoBehaviour
     /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Metaball_liquid")&&_count < _maxCount)
+        if (collision.CompareTag("Metaball_liquid"))
         {
-            _count++;
-            PointManager.AddPoints(1);
+            liquidParticles.Add(collision.gameObject);
+            if (_count < _maxCount)
+            {
+                _count++;
+                PointManager.AddPoints(1);
+            }
         }
     }
     /// <summary>
@@ -56,6 +68,7 @@ public class PointCounter : MonoBehaviour
     {
         if (collision.CompareTag("Metaball_liquid"))
         {
+            liquidParticles.Remove(collision.gameObject);
             _count--;
             PointManager.RemovePoints(1);
 

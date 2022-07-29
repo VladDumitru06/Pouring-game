@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxCount: 15
   _points: 25
+  liquidParticles: []
 --- !u!60 &9022604638946838161
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -72,12 +73,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.9622619, y: 0.43333447}
+    - - {x: -1.2360008, y: 0.73087656}
       - {x: -0.8067172, y: -0.3164534}
       - {x: -0.5396721, y: -0.8304006}
       - {x: 0.30445254, y: -0.80901694}
       - {x: 0.6209301, y: -0.2410199}
-      - {x: 0.7104912, y: 0.42662692}
+      - {x: 0.95447564, y: 0.73011994}
 --- !u!1 &7202810756622184325
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,3 +280,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cupType: 0
   capacity: 15
+  pointCounter: {fileID: 1349813705224740805}
