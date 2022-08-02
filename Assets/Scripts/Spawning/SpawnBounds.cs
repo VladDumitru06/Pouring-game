@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnBounds : MonoBehaviour
 {
 
-    [SerializeField] ObjectPool _objectPool;
+    [SerializeField] CupObjectPool _objectPool;
     /// <summary>
     /// false if it's despawner
     /// </summary>

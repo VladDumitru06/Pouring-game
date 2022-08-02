@@ -1,7 +1,7 @@
-using Enums;
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Enums;
 
 public class ObjectPool : MonoBehaviour
 {
@@ -11,6 +11,7 @@ public class ObjectPool : MonoBehaviour
     /// </summary>
     [SerializeField]
     List<GameObject> _objects;
+    public Dictionary<GameObject, int> objects;
     /// <summary>
     /// List size of objects. Actual size is _listsize*_objects.count
     /// </summary>
@@ -62,7 +63,7 @@ public class ObjectPool : MonoBehaviour
             _cupList[_tempIndex].gameObject.SetActive(true);
             _cupList[_tempIndex].cupStatus = CupStatus.Making;
             float halfHeight = _cupList[_tempIndex].gameObject.GetComponent<SpriteRenderer>().bounds.size.y / 2;
-            _cupList[_tempIndex].gameObject.transform.position = new Vector3(position.x,position.y + halfHeight);
+            _cupList[_tempIndex].gameObject.transform.position = new Vector3(position.x, position.y + halfHeight);
         }
         else
         {
@@ -81,12 +82,12 @@ public class ObjectPool : MonoBehaviour
     /// <param name="cupToRemove"></param>
     public void RemoveCup(GameObject cupToRemove)
     {
-        foreach(Cup cup in _cupList)
+        foreach (Cup cup in _cupList)
         {
             if (cup.gameObject == cupToRemove)
             {
                 cup.cupStatus = CupStatus.Despawned;
-                cup.gameObject.SetActive(false); 
+                cup.gameObject.SetActive(false);
             }
         }
     }
